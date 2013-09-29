@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: teams
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  short_name :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  user_id    :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  short_name: MyString
+
+two:
+  name: MyString
+  short_name: MyString

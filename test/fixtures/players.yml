@@ -1,0 +1,37 @@
+# == Schema Information
+#
+# Table name: players
+#
+#  id              :integer          not null, primary key
+#  nick            :string(255)
+#  first_name      :string(255)
+#  last_name       :string(255)
+#  country         :string(255)
+#  birth_date      :date
+#  email           :string(255)
+#  password_digest :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nick: MyString
+  first_name: MyString
+  last_name: MyString
+  role: MyString
+  nationality: MyString
+  birth_date: 2013-09-28
+  email: MyString
+  password_digest: MyString
+
+two:
+  nick: MyString
+  first_name: MyString
+  last_name: MyString
+  role: MyString
+  nationality: MyString
+  birth_date: 2013-09-28
+  email: MyString
+  password_digest: MyString
