@@ -23,10 +23,12 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %><br>
   </div>
+  <!--
   <div class="field">
-    <%= f.label :role %><br>
-    <%= f.select :role, options_for_select([['Carry', 'carry'], ['Solo Mid', 'mid'], ['Offlane', 'offlane'], ['Support', 'support']] ) %>
+    <%#= f.label :role %><br>
+    <%#= f.collection_select(:roles_array, Role.all, :id, :name) %>
   </div>
+  -->
   <strong>Personal Information</strong>
   <div class="field">
     <%= f.label :first_name %><br>

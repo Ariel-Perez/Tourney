@@ -30,5 +30,5 @@ class Player < ActiveRecord::Base
 	has_many :memberships
 	has_many :teams, through: :memberships
 
-	has_many :roles
+	has_and_belongs_to_many :roles
 end

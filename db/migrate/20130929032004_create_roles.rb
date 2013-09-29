@@ -1,9 +1,12 @@
 class CreateRoles < ActiveRecord::Migration
   def change
-    create_table :roles do |t|
-      t.string :name
+    puts Role.table_exists?
+    unless Role.table_exists? 
+      create_table :roles do |t|
+        t.string :name
 
-      t.timestamps
-    end
+        t.timestamps
+      end
+	end
   end
 end
