@@ -1,0 +1,9 @@
+<%= form_for @team.memberships.build(player_id: player) do |f| %>
+  <div><%= f.hidden_field :team_id, value: @team.id %></div>
+  <div><%= f.hidden_field :player_id, value: player.id %></div>
+  <div>
+    <%= f.label :role %><br>
+    <%= f.collection_select :role_id, @roles, :id, :name %>
+  </div>
+  <%= f.submit "Recruit" %>
+<% end %>

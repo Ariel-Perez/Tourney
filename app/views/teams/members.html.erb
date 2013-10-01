@@ -1,0 +1,23 @@
+<h1><%= @team.name %></h1>
+
+<strong>Current Members</strong>
+<ul>
+  <% @team.memberships.each do |member| %>
+    <li>
+    	<%= member.player.nick %> - <%= member.role.name %>
+    	<%= render :partial => 'expel', :locals => {player: member.player} %>
+    </li>
+  <% end %>
+</ul>
+
+<strong>Add new Members</strong>
+<ul>
+  <% @players.each do |player| %>
+    <% unless player.is_member?(@team) %>
+      <li>
+        <%= player.nick %>
+        <%= render :partial => 'recruit', :locals => {player: player} %>
+	  </li>
+	<% end %>
+  <% end %>
+</ul>

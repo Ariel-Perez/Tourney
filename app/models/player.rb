@@ -31,4 +31,21 @@ class Player < ActiveRecord::Base
 	has_many :teams, through: :memberships
 
 	has_and_belongs_to_many :roles
+
+	def is_member?(team)
+		memberships.find_by(team_id: team.id)
+	end
+
+	def plays_role?(role)
+		roles.find_by(role_id: role.id)
+	end
+
+	def join!(team, role)
+		memberships.create!(team_id: team.id, role_id: role.id)
+	end
+
+	def leave!(team)
+		memberships.find_by(team_id: team.id).destroy!
+	end
+
 end

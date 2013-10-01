@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :destroy, :members]
 
   # GET /teams
   # GET /teams.json
@@ -59,6 +59,12 @@ class TeamsController < ApplicationController
       format.html { redirect_to teams_url }
       format.json { head :no_content }
     end
+  end
+
+  
+  def members
+    @roles = Role.all
+    @players = Player.all
   end
 
   private

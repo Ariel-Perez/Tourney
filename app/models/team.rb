@@ -20,4 +20,11 @@ class Team < ActiveRecord::Base
 	has_many :memberships
 	has_many :players, through: :memberships
 
+	def recruit(player, role)
+		player.join!(self, role)
+	end
+
+	def expel(player)
+		player.leave!(self)
+	end
 end

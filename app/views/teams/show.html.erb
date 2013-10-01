@@ -10,5 +10,16 @@
   <%= @team.short_name %>
 </p>
 
+<p>
+  <strong>Members:</strong> <%= link_to '(Edit)', members_team_path(@team) %>
+  <ul>
+  	<% @team.memberships.each do |member| %>
+  	  <li>
+  	  	<%= link_to member.player.nick, player_path(member.player) %> - <%= member.role.name %>
+  	  </li>
+  	<% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
