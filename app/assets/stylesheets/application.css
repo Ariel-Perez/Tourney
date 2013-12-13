@@ -14,13 +14,13 @@
 
 #login-box
 {
-	float: right;
-	margin-right: 10px;
+  float: right;
+  margin-right: 10px;
 }
 
 .clear-fix
 {
-	clear: both;
+  clear: both;
 }
 
 a {
@@ -44,6 +44,6 @@ body {
 
 .menu-option
 {
-	float: left;
-	margin: 10px;
+  float: left;
+  margin: 10px;
 }

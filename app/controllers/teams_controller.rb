@@ -10,6 +10,14 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @captain = @team.player
+    @memberships = @team.memberships
+    @vacancies = @team.vacancies
+    @applications = @team.applications
+    @invitations = @team.invitations
+
+    @is_captain = validate_user(@captain.id)
+    @vacancy = Vacancy.new(team_id: @team.id)
   end
 
   # GET /teams/new
@@ -75,6 +83,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :short_name)
+      params.require(:team).permit(:name, :short_name, :player_id)
     end
 end

@@ -1,7 +1,6 @@
 Tourney::Application.routes.draw do
   
-  get "memberships/create"
-  get "memberships/destroy"
+  resources :vacancies, only: [:create, :destroy, :show]
   resources :roles
 
   resources :tournaments

@@ -1,25 +1,30 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
-
-<p>
-  <strong>Short name:</strong>
+<h1> 
   <%= @team.short_name %>
-</p>
+</h1>
+<h2>
+  <%= @team.name %>
+</h2>
 
-<p>
-  <strong>Members:</strong> <%= link_to '(Edit)', members_team_path(@team) %>
-  <ul>
-  	<% @team.memberships.each do |member| %>
-  	  <li>
-  	  	<%= link_to member.player.nick, player_path(member.player) %> - <%= member.role.name %>
-  	  </li>
-  	<% end %>
-  </ul>
-</p>
+<div class="captain">
+  <strong>Captain:</strong>
+  <%= link_to @captain.nick, player_path(@captain) %>
+</div>
+
+<div class="members">
+  <p>
+    <strong>Members:</strong> <%= link_to '(Edit)', members_team_path(@team) %>
+    <ul>
+      <% @memberships.each do |member| %>
+        <li>
+          <%= link_to member.player.nick, player_path(member.player) %> - <%= member.role.name %>
+        </li>
+      <% end %>
+    </ul>
+  </p>
+</div>
+
+<%= render 'vacancies' %>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

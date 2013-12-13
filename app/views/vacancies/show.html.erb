@@ -1,0 +1,33 @@
+<h1><%= link_to @team.short_name, team_path(@team) %></h1>
+<h2><%= link_to @team.name, team_path(@team) %></h2>
+
+<h3>Vacancy: <%= @vacancy.role_s %></h3>
+<h3>Requirements</h3>
+<p>
+  <%= @vacancy.requirements %>
+</p>
+
+<% if @applications.count > 0 %>
+  <h3>Applications</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Nick</th>
+        <th>Country</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @applications.each do |app| %>
+        <tr>
+          <td><%= app.player.nick %></td>
+          <td><%= app.player.country %></td>
+          <td><%= app.creation_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h3>There are currently no applications for this vacancy.</h3>
+<% end %>

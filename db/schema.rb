@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130929045532) do
+ActiveRecord::Schema.define(version: 20131213063110) do
+
+  create_table "applications", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "status"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "invitation_id"
+    t.integer  "vacancy_id"
+  end
+
+  create_table "invitations", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "status"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "memberships", force: true do |t|
     t.integer  "player_id"
@@ -51,13 +71,21 @@ ActiveRecord::Schema.define(version: 20130929045532) do
     t.string   "short_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "player_id"
   end
 
   create_table "tournaments", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "vacancies", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "requirements"
   end
 
 end
