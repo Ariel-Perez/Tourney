@@ -37,10 +37,6 @@ class Player < ActiveRecord::Base
     memberships.find_by(team_id: team.id)
   end
 
-  def plays_role?(role)
-    roles.find_by(role_id: role.id)
-  end
-
   def join!(team, role)
     memberships.create!(team_id: team.id, role_id: role.id)
   end

@@ -10,6 +10,10 @@ class VacanciesController < ApplicationController
   def show
     @applications = @vacancy.applications
     @team = @vacancy.team
+
+    if current_user
+      @in_team = current_user.is_member?(@team)
+    end
   end
 
   def destroy
