@@ -34,7 +34,7 @@ class Player < ActiveRecord::Base
 
 
   def is_member?(team)
-    memberships.find_by(team_id: team.id)
+    memberships.find_by(team_id: team.id) or teams.find_by(id: team.id)
   end
 
   def join!(team, role)

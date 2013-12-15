@@ -1,5 +1,6 @@
 Tourney::Application.routes.draw do
   
+  resources :applications, only: [:create, :destroy, :show]
   resources :vacancies, only: [:create, :destroy, :show]
   resources :roles
 

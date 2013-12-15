@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213063110) do
+ActiveRecord::Schema.define(version: 20131213222740) do
 
   create_table "applications", force: true do |t|
-    t.integer  "team_id"
     t.integer  "player_id"
     t.integer  "status"
     t.text     "message"

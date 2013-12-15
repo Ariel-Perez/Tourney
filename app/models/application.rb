@@ -3,7 +3,6 @@
 # Table name: applications
 #
 #  id            :integer          not null, primary key
-#  team_id       :integer
 #  player_id     :integer
 #  status        :integer
 #  message       :text
@@ -15,14 +14,24 @@
 
 class Application < ActiveRecord::Base
 
-  validates :team_id, presence: true
+  @@SENT = 1
+  @@ACCEPTED = 2
+  @@REJECTED = 0
+
+  validates :vacancy_id, presence: true
   validates :player_id, presence: true
-  validates :status, presence: true, inclusion: 0..2
+  validates :status, presence: true, inclusion: [@@SENT, @@ACCEPTED, @@REJECTED]
 
   belongs_to :player
-  belongs_to :team
   belongs_to :vacancy
 
-  has_many :roles
-
+  def self.SENT
+    @@SENT
+  end
+  def self.ACCEPTED
+    @@ACCEPTED
+  end
+  def self.REJECTED
+    @@REJECTED
+  end
 end

@@ -4,6 +4,7 @@ class VacanciesController < ApplicationController
   def create
     @vacancy = Vacancy.new(vacancy_params)
     @vacancy.save!
+
     redirect_to team_path(@vacancy.team)
   end
 
@@ -13,6 +14,10 @@ class VacanciesController < ApplicationController
 
     if current_user
       @in_team = current_user.is_member?(@team)
+
+      if not @in_team
+        @application = Application.new(vacancy_id: @vacancy.id, player_id: current_user.id)
+      end
     end
   end
 

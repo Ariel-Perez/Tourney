@@ -3,7 +3,6 @@
 # Table name: applications
 #
 #  id            :integer          not null, primary key
-#  team_id       :integer
 #  player_id     :integer
 #  status        :integer
 #  message       :text

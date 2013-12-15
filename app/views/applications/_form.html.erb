@@ -1,0 +1,29 @@
+<%= form_for(@application) do |f| %>
+  <% if @application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
+
+      <ul>
+      <% @application.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :message %><br>
+    <%= f.text_area :message %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :vacancy_id, :value => @application.vacancy_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :player_id, :value => @application.player_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :status, :value => Application.SENT %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
