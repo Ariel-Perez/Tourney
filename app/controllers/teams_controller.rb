@@ -16,7 +16,13 @@ class TeamsController < ApplicationController
     @applications = @team.applications
     @invitations = @team.invitations
 
-    @is_captain = validate_user(@captain.id)
+    @is_captain = validate_user(@captain.id) 
+    @is_member = !!(current_user and Membership.find_by(player_id: current_user.id, team_id: @team.id))
+    
+    if current_user
+      @membership = Membership.find_by(player_id: current_user.id, team_id: @team.id)
+    end
+
     @vacancy = Vacancy.new(team_id: @team.id)
   end
 
@@ -43,6 +49,9 @@ class TeamsController < ApplicationController
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
+
+    @membership = Membership.new(team_id: @team.id, player_id: @team.player_id)
+    @membership.save
   end
 
   # PATCH/PUT /teams/1

@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
 
   end
 
-  def create  	
-  	if p = Player.find_by(:nick => params[:session][:nick]).try(:authenticate, params[:session][:password])
+  def create    
+    if p = Player.find_by(:nick => params[:session][:nick]).try(:authenticate, params[:session][:password])
       session[:user_id] = p.id
       flash.notice = "Signed in successflly"
       redirect_to root_path

@@ -10,6 +10,7 @@
 <header>
   <div id = "login-box">
     <% if current_user %>
+      <%= link_to current_user.pending_invitations.count.to_s + ' Invitations', invitations_player_path(current_user) %> 
       <%= link_to current_user.nick, player_path(current_user) %>
       <%= link_to 'Sign out', session_path, :method => :delete %>
     <% else %>

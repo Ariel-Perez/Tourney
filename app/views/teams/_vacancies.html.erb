@@ -4,7 +4,7 @@
     <ul>
       <% @vacancies.each do |vacancy| %>
         <li>
-          <%= link_to "(#{vacancy.applications.count}) #{vacancy.role_s}", vacancy_path(vacancy) %>
+          <%= link_to "(#{vacancy.pending_applications.count}) #{vacancy.role_s}", vacancy_path(vacancy) %>
           <%= link_to "(Delete)", vacancy_path(vacancy), :method => :delete %>
         </li>
       <% end %>

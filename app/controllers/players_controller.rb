@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :set_player, only: [:show, :edit, :update, :destroy, :invitations, :invite]
 
   # GET /players
   # GET /players.json
@@ -12,6 +12,10 @@ class PlayersController < ApplicationController
   def show
     @memberships = @player.memberships
     @teams = @player.teams
+
+    if current_user
+      @not_teams = current_user.teams.where.not(id: @teams.pluck(:id))
+    end
   end
 
   # GET /players/new
@@ -60,6 +64,20 @@ class PlayersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to players_url }
       format.json { head :no_content }
+    end
+  end
+
+  def invitations
+    @invitations = @player.invitations
+  end
+
+  def invite
+    @invitation = Invitation.new
+    @teams = @player.teams
+    @not_teams = current_user.teams.where.not(id: @teams.pluck(:id))
+
+    if @not_teams.count == 0
+      back
     end
   end
 

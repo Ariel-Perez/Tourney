@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
 
 
   protected 
+  def back
+    session[:return_to] ||= request.referer
+    redirect_to session.delete(:return_to)
+  end
+
   def current_user
     @current_user ||= session.has_key?(:user_id) && Player.find(session[:user_id])
   end
@@ -22,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   private
   def require_login
-  	redirect_to new_session_path unless current_user
+    redirect_to new_session_path unless current_user
   end
 
   def require_admin

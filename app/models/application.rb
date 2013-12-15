@@ -34,4 +34,10 @@ class Application < ActiveRecord::Base
   def self.REJECTED
     @@REJECTED
   end
+
+  def accept
+    membership = Membership.new(player_id: player_id, team_id: vacancy.team_id)
+    membership.role = vacancy.role
+    membership.save
+  end
 end

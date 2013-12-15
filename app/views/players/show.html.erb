@@ -7,6 +7,10 @@
     <%= @player.nick %>
   </h1>
 
+  <% if current_user and @not_teams.count > 0 %>
+    <%= link_to 'Invite to team', invite_player_path(@player) %>
+  <% end %>
+
   <div class='personal-info'>
     <p>
       <%= @player.first_name + ' ' + @player.last_name %>
@@ -32,6 +36,25 @@
           <li> <%= link_to team.name, team_path(team) %> </li>
         <% end %>
       </ul>
+    <% end %>
+
+    <% if @memberships.length > 0 %>
+      <h2>
+        Member of:
+      </h2>
+      <ul>
+        <% @memberships.each do |membership| %>
+          <% team = membership.team %>
+          <li>
+            <%= link_to team.name, team_path(team) %>
+            <% if membership.role %>
+              - <%= membership.role.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Belongs to no teams</p>
     <% end %>
   </div>
 

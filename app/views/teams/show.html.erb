@@ -6,6 +6,13 @@
   <%= @team.name %>
 </h2>
 
+
+<% if @is_member and not @is_captain %>
+  <%= link_to 'Leave team', membership_path(@membership), method: :delete %>
+<% end %>
+<hr/>
+<br/>
+
 <div class="captain">
   <strong>Captain:</strong>
   <%= link_to @captain.nick, player_path(@captain) %>
@@ -17,7 +24,13 @@
     <ul>
       <% @memberships.each do |member| %>
         <li>
-          <%= link_to member.player.nick, player_path(member.player) %> - <%= member.role.name %>
+          <%= link_to member.player.nick, player_path(member.player) %>
+          <% if member.role %>
+             - <%= member.role.name %>
+          <% end %>
+          <% if @is_captain and member.player != current_user%>
+             - <%= link_to 'Expel', membership_path(member), method: :delete %>
+          <% end %>
         </li>
       <% end %>
     </ul>

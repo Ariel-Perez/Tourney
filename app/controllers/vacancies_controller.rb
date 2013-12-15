@@ -9,15 +9,17 @@ class VacanciesController < ApplicationController
   end
 
   def show
-    @applications = @vacancy.applications
+    @applications = @vacancy.pending_applications
     @team = @vacancy.team
 
-    if current_user
-      @in_team = current_user.is_member?(@team)
+    @in_team = !!(current_user and Membership.find_by(player_id: current_user.id, team_id: @team.id))
+    @my_app = current_user ? Application.find_by(player_id: current_user.id, vacancy_id: @vacancy.id) : []
 
-      if not @in_team
-        @application = Application.new(vacancy_id: @vacancy.id, player_id: current_user.id)
-      end
+
+    @can_apply = !!(current_user and !@in_team and !@my_app)
+    
+    if @can_apply
+      @application = Application.new(vacancy_id: @vacancy.id, player_id: current_user.id)
     end
   end
 

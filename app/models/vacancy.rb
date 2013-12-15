@@ -19,6 +19,16 @@ class Vacancy < ActiveRecord::Base
 
   has_many :applications
 
+  def pending_applications
+    applications.where(status: Application.SENT)
+  end
+  def accepted_applications
+    applications.where(status: Application.ACCEPTED)
+  end
+  def rejected_applications
+    applications.where(status: Application.REJECTED)
+  end
+
   def role_s
     if role
       role.name
@@ -26,5 +36,4 @@ class Vacancy < ActiveRecord::Base
       'Any role'
     end
   end
-
 end

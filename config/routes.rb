@@ -1,7 +1,20 @@
 Tourney::Application.routes.draw do
   
-  resources :applications, only: [:create, :destroy, :show]
+  resources :applications, only: [:create, :destroy, :show, :accept, :reject] do
+    member do
+      post :accept
+      post :reject
+    end
+  end
+  resources :invitations, only: [:create, :destroy, :show, :accept, :decline] do
+    member do
+      post :accept
+      post :decline
+    end
+  end
+
   resources :vacancies, only: [:create, :destroy, :show]
+  resources :memberships, only: [:create, :destroy]
   resources :roles
 
   resources :tournaments
@@ -14,11 +27,10 @@ Tourney::Application.routes.draw do
 
   resources :players do
     member do
-      get :teams, :roles
+      get :invitations
+      get :invite
     end
   end
-
-  resources :memberships, only: [:create, :destroy]
 
   
   resource :session, only: [:new, :create, :destroy]

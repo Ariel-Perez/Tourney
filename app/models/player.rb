@@ -32,9 +32,15 @@ class Player < ActiveRecord::Base
   has_many :invitations
   has_many :applications
 
+  def pending_invitations
+    invitations.where(status: Invitation.SENT)
+  end
+  def declined_invitations
+    invitations.where(status: Invitation.DECLINED)
+  end
 
   def is_member?(team)
-    memberships.find_by(team_id: team.id) or teams.find_by(id: team.id)
+    memberships.find_by(team_id: team.id) #or teams.find_by(id: team.id)
   end
 
   def join!(team, role)
