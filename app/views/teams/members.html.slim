@@ -1,0 +1,16 @@
+h1= @team.name
+strong Current Members
+ul
+  - @team.memberships.each do |member|
+    li
+      = member.player.nick
+      - if member.role
+        | \- #{member.role.name}
+      = render :partial => 'expel', :locals => {player: member.player}
+strong Add new Members
+ul
+  - @players.each do |player|
+    - unless player.is_member?(@team)
+      li
+        = player.nick
+        = render :partial => 'recruit', :locals => {player: player}

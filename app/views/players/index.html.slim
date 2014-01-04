@@ -1,0 +1,23 @@
+h1 Listing players
+table
+  thead
+    tr
+      th Nick
+      th Country
+      th First name
+      th Last name
+      th
+      th
+      th
+  tbody
+    - @players.each do |player|
+      tr
+        td= player.nick
+        td= player.country
+        td= player.first_name
+        td= player.last_name
+        td= link_to 'Show', player
+        td= link_to 'Edit', edit_player_path(player)
+        td= link_to 'Destroy', player, method: :delete, confirm: 'Are you sure?'  
+br
+= link_to 'New Player', new_player_path
