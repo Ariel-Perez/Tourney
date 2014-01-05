@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :validate_user
   helper_method :admin
 
-
   protected 
   def back
     session[:return_to] ||= request.referer

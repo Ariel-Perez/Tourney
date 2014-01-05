@@ -34,6 +34,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+#bootstrap
+gem 'bootstrap-sass'
 group :development do
   gem 'annotate'
   gem 'awesome_print'
@@ -41,6 +43,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'debugger'
+
+  gem 'rails_layout'
 end
 
 group :test, :development do

@@ -37,6 +37,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
     builder (3.1.4)
     coderay (1.0.9)
     coffee-rails (4.0.0)
@@ -90,6 +92,7 @@ GEM
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
+    rails_layout (0.5.10)
     rails_serve_static_assets (0.0.1)
     rails_stdout_logging (0.0.1)
     railties (4.0.0)
@@ -152,6 +155,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   better_errors
   binding_of_caller
+  bootstrap-sass
   debugger
   jbuilder (~> 1.2)
   jquery-rails
@@ -159,6 +163,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.0.0)
   rails_12factor
+  rails_layout
   sass-rails (~> 4.0.0)
   sdoc
   slim-rails

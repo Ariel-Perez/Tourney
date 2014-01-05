@@ -11,39 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-#login-box
-{
-  float: right;
-  margin-right: 10px;
-}
-
-.clear-fix
-{
-  clear: both;
-}
-
-a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
-
-body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.menu-option
-{
-  float: left;
-  margin: 10px;
-}

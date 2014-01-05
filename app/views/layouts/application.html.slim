@@ -1,37 +1,16 @@
 doctype html
 html
   head
-    title Tourney
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
-    = csrf_meta_tags
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    title
+      = content_for?(:title) ? yield(:title) : 'Tourney'
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Tourney'}"
+    == stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
+    == javascript_include_tag "application", "data-turbolinks-track" => true
+    == csrf_meta_tags
   body
     header
-      #login-box
-        - if current_user
-          = link_to current_user.pending_invitations.count.to_s + ' Invitations', invitations_player_path(current_user)
-          = link_to current_user.nick, player_path(current_user)
-          = link_to 'Sign out', session_path, :method => :delete
-        - else
-          = link_to 'Sign up', new_player_path
-          = link_to 'Log in', new_session_path
-      .clear-fix
-        br/
-        hr/
-        br/
-        /! ACÁ VA EL MENÚ PRINCIPAL
-        .menu
-          .menu-option
-            = link_to 'Home', root_path
-          .menu-option
-            = link_to 'Players', players_path
-          .menu-option
-            = link_to 'Teams', teams_path
-          .menu-option
-            = link_to 'Tournaments', tournaments_path
-          .clear-fix
-          br/
-          hr/
-          br/
-          div
-    = yield
+      == render 'layouts/navigation'
+    main[role="main"]
+      == render 'layouts/messages'
+      == yield
