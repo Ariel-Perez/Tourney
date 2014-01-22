@@ -1,0 +1,31 @@
+/ navigation styled for Bootstrap 3.0
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
+        span.sr-only Toggle navigation
+        span.icon-bar 
+        span.icon-bar
+        span.icon-bar
+
+      = link_to 'Home', root_path, class: 'navbar-brand'
+
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-left
+        /== render 'layouts/navigation_links'
+        
+        li class=('active' if is_active?('players')) = link_to 'Players', players_path
+        li class=('active' if is_active?('teams')) = link_to 'Teams', teams_path
+        li class=('active' if is_active?('tournaments')) = link_to 'Tournaments', tournaments_path
+
+      ul.nav.navbar-nav.navbar-right        
+        - if current_user
+            li = link_to current_user.pending_invitations.count.to_s + ' Invitations', invitations_player_path(current_user)
+            li = link_to current_user.nick, player_path(current_user)
+            li = link_to 'Sign out', session_path, :method => :delete
+        - else
+            li = link_to 'Sign up', new_player_path
+            li = link_to 'Log in', new_session_path
+
+
+

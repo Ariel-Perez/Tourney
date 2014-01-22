@@ -1,0 +1,28 @@
+p#notice= notice
+h1
+  = @team.short_name
+h2
+  = @team.name
+- if @is_member and not @is_captain
+  = link_to 'Leave team', membership_path(@membership), method: :delete
+hr/
+br/
+.captain
+  strong Captain:
+  = link_to @captain.nick, player_path(@captain)
+.members
+  p
+    strong Members:
+    = link_to '(Edit)', members_team_path(@team)
+  ul
+    - @memberships.each do |member|
+      li
+        = link_to member.player.nick, player_path(member.player)
+        - if member.role
+          | \- #{member.role.name}
+        - if @is_captain and member.player != current_user
+          | \- #{link_to 'Expel', membership_path(member), method: :delete}
+= render 'vacancies'
+= link_to 'Edit', edit_team_path(@team)
+| \
+| \#{link_to 'Back', teams_path}

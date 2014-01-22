@@ -1,0 +1,38 @@
+#notice
+  = notice
+.info
+  h1
+    = @player.nick
+  - if current_user and @not_teams.count > 0
+    = link_to 'Invite to team', invite_player_path(@player)
+  .personal-info
+    p
+      = @player.first_name + ' ' + @player.last_name
+    p
+      = @player.country
+    p
+      = @player.birth_date
+    p
+      = @player.email
+  .team-info
+    - if @teams.length > 0
+      h2
+        | Captain of:
+      ul
+        - @teams.each do |team|
+          li
+            = link_to team.name, team_path(team)
+    - if @memberships.length > 0
+      h2
+        | Member of:
+      ul
+        - @memberships.each do |membership|
+          - team = membership.team
+          li
+            = link_to team.name, team_path(team)
+            - if membership.role
+              | \- #{membership.role.name}
+    - else
+      p Belongs to no teams
+= link_to 'Edit', edit_player_path(@player)
+= link_to 'Back', players_path

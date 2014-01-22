@@ -1,0 +1,21 @@
+= form_for(@vacancy) do |f|
+  - if @vacancy.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@vacancy.errors.count, "error")
+        | prohibited this vacancy from being saved:
+      ul
+        - @vacancy.errors.full_messages.each do |msg|
+          li= msg
+  .field
+    = f.label :role
+    br/
+    = f.collection_select(:role_id, Role.all, :id, :name, :prompt => 'Select')
+  .field
+    = f.label :requirements
+    br/
+    = f.text_area :requirements
+  .field
+    = f.hidden_field :team_id, :value => @vacancy.team_id
+  .actions
+    = f.submit 'Open Vacancy'

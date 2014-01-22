@@ -1,0 +1,18 @@
+.vacancies
+  - if @vacancies.count > 0
+    h3
+      = @team.short_name
+      | is recruiting!
+    ul
+      - @vacancies.each do |vacancy|
+        li
+          = link_to "(#{vacancy.pending_applications.count}) #{vacancy.role_s}", vacancy_path(vacancy)
+          = link_to "(Delete)", vacancy_path(vacancy), :method => :delete
+  - else
+    h3
+      = @team.short_name
+      | is not recruiting at the moment.
+  - if @is_captain
+    .new-vacancy
+      h3 Open vacancies
+      = render 'vacancies/form'

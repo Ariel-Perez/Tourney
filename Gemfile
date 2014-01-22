@@ -11,7 +11,8 @@ gem 'sass-rails', '~> 4.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-gem 'slim'
+#Parser
+gem 'slim-rails'
 
 # Use CoffeeScript for .js.coffee assets and views
 # gem 'coffee-rails', '~> 4.0.0'
@@ -33,12 +34,17 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+#bootstrap
+gem 'bootstrap-sass'
 group :development do
   gem 'annotate'
   gem 'awesome_print'
   gem 'quiet_assets'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'debugger'
+
+  gem 'rails_layout'
 end
 
 group :test, :development do

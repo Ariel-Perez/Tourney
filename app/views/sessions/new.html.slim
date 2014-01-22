@@ -1,0 +1,16 @@
+h1 Inicia sesión
+- if alert
+  .alert
+    = alert
+  = form_for :session, url: session_path do |f|
+    div
+      = f.label :nick
+      = f.text_field :nick, value: params[:session].try(:[], :nick)
+    div
+      = f.label :password
+      = f.password_field :password
+    = f.submit "Log in!"
+  p
+    | No account yet?
+  p
+    | Sign up #{link_to 'here' , new_player_path}
