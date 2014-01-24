@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215212857) do
+ActiveRecord::Schema.define(version: 20140124144135) do
 
   create_table "applications", force: true do |t|
     t.integer  "player_id"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20131215212857) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "invitation_id"
     t.integer  "vacancy_id"
   end
 
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(version: 20131215212857) do
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
   end
 
   create_table "players", force: true do |t|
